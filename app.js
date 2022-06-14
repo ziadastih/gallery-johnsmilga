@@ -51,14 +51,14 @@ const mainImg = document.querySelector(".main-img");
 // for each for the nature section
 nature.forEach(function (img) {
   img.addEventListener("click", function (e) {
+    // selected target
     let elementId = e.target.dataset.id;
     let number = parseInt(elementId, 10);
-
-    item = natures[number];
+    let item = natures[number];
     mainImg.src = item.img;
     imageName.textContent = item.title;
 
-    // modalist function
+    // ============modalist function
     let listItems = " ";
 
     for (let i = 0; i < natures.length; i++) {
@@ -66,6 +66,7 @@ nature.forEach(function (img) {
 src=${natures[i].img}
 title=${natures[i].title}
 data-id= ${i}
+id = ${natures[i].title}
 class="modal-img"
 alt=""
 />`;
@@ -73,65 +74,67 @@ alt=""
 
     imgContainer.innerHTML = listItems;
 
-    //   modal images function
+    //  ============ modal images function
     const modalImg = document.querySelectorAll(".modal-img");
 
     modalImg.forEach(function (smallImg) {
       smallImg.addEventListener("click", function (i) {
         let currentImage = i.target.dataset.id;
+
         let currentNumber = parseInt(currentImage, 10);
-        mainImg.src = natures[currentNumber].img;
-        imageName.textContent = natures[currentNumber].title;
+
+        number = currentNumber;
+        mainImg.src = natures[number].img;
+        imageName.textContent = natures[number].title;
       });
     });
 
     // open the modal
     modal.classList.add("open");
 
-    //  closeBtn function
-    if (modal.classList.contains("open")) {
-      // close btn function
-      let Count = number;
-      closeBtn.addEventListener("click", function () {
-        modal.classList.remove("open");
-      });
-      // ======prevBtn function
+    // ============close btn function
+    closeBtn.addEventListener("click", function () {
+      modal.classList.remove("open");
+    });
+    // ======prevBtn function=============
 
-      prevBtn.addEventListener("click", function () {
-        Count--;
-        console.log(Count);
-        item = natures[Count];
-        mainImg.src = item.img;
-        imageName.textContent = item.title;
-        if ((Count = 0)) {
-          Count = natures.length;
-        }
-      });
-      nextBtn.addEventListener("click", function () {
-        Count++;
-        console.log(Count);
-        item = natures[Count];
-        mainImg.src = item.img;
-        imageName.textContent = item.title;
-        if (Count > natures.length - 1) {
-          Count = 0;
-          Count++;
-        }
-      });
-    }
+    prevBtn.addEventListener("click", function () {
+      number--;
+      if (number < 0) {
+        number = natures.length - 1;
+      } else if (number > natures.length - 1) {
+        number = 0;
+      }
+      item = natures[number];
+      mainImg.src = item.img;
+      imageName.textContent = item.title;
+    });
+    // ==========next btn==========
+    nextBtn.addEventListener("click", function () {
+      number++;
+      if (number < 0) {
+        number = natures.length - 1;
+      } else if (number > natures.length - 1) {
+        number = 0;
+      }
+      item = natures[number];
+      mainImg.src = item.img;
+      imageName.textContent = item.title;
+    });
   });
 });
 
 // for each for the nature section
 city.forEach(function (img) {
   img.addEventListener("click", function (e) {
+    // =======SELECTED TARGET
     let elementId = e.target.dataset.id;
     let number = parseInt(elementId, 10);
-
     item = cities[number];
     mainImg.src = item.img;
     imageName.textContent = item.title;
-    // modalist function
+
+    //======== modalist function achieve it with a for loop======
     let listItems = " ";
 
     for (let i = 0; i < cities.length; i++) {
@@ -146,28 +149,55 @@ alt=""
 
     imgContainer.innerHTML = listItems;
 
-    //   modal images function
+    //  ========= modal images click function=====
     const modalImg = document.querySelectorAll(".modal-img");
 
     modalImg.forEach(function (smallImg) {
       smallImg.addEventListener("click", function (i) {
         let currentImage = i.target.dataset.id;
         let currentNumber = parseInt(currentImage, 10);
-        mainImg.src = cities[currentNumber].img;
-        imageName.textContent = cities[currentNumber].title;
+
+        number = currentNumber;
+        mainImg.src = cities[number].img;
+        imageName.textContent = cities[number].title;
       });
     });
 
     //
 
-    // open the modal
+    //========== open the modal
     modal.classList.add("open");
 
-    //  closeBtn function
-    if (modal.classList.contains("open")) {
-      closeBtn.addEventListener("click", function () {
-        modal.classList.remove("open");
-      });
-    }
+    //  ========CLOSE BTN
+
+    closeBtn.addEventListener("click", function () {
+      modal.classList.remove("open");
+    });
+    //  =========PREV BTN
+    prevBtn.addEventListener("click", function () {
+      number--;
+      if (number < 0) {
+        number = cities.length - 1;
+      } else if (number > cities.length - 1) {
+        number = 0;
+      }
+      console.log(number);
+      item = cities[number];
+      mainImg.src = item.img;
+      imageName.textContent = item.title;
+    });
+
+    // =========NEXT BTN
+    nextBtn.addEventListener("click", function () {
+      number++;
+      if (number < 0) {
+        number = cities.length - 1;
+      } else if (number > cities.length - 1) {
+        number = 0;
+      }
+      item = cities[number];
+      mainImg.src = item.img;
+      imageName.textContent = item.title;
+    });
   });
 });
