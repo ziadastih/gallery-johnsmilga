@@ -66,26 +66,46 @@ nature.forEach(function (img) {
 src=${natures[i].img}
 title=${natures[i].title}
 data-id= ${i}
-id = ${natures[i].title}
+id = ${i}
 class="modal-img"
 alt=""
 />`;
     }
 
     imgContainer.innerHTML = listItems;
+    // selecting each id
+    const firstId = document.getElementById("0");
+    const secondId = document.getElementById("1");
+    const thirdId = document.getElementById("2");
 
+    let randomId = document.getElementById(elementId);
+    randomId.classList.add("selected");
     //  ============ modal images function
     const modalImg = document.querySelectorAll(".modal-img");
 
     modalImg.forEach(function (smallImg) {
       smallImg.addEventListener("click", function (i) {
         let currentImage = i.target.dataset.id;
-
+        console.log(currentImage);
         let currentNumber = parseInt(currentImage, 10);
 
         number = currentNumber;
         mainImg.src = natures[number].img;
         imageName.textContent = natures[number].title;
+
+        if (firstId.id === currentImage) {
+          firstId.classList.add("selected");
+          thirdId.classList.remove("selected");
+          secondId.classList.remove("selected");
+        } else if (secondId.id === currentImage) {
+          secondId.classList.add("selected");
+          thirdId.classList.remove("selected");
+          firstId.classList.remove("selected");
+        } else {
+          thirdId.classList.add("selected");
+          firstId.classList.remove("selected");
+          secondId.classList.remove("selected");
+        }
       });
     });
 
@@ -108,6 +128,21 @@ alt=""
       item = natures[number];
       mainImg.src = item.img;
       imageName.textContent = item.title;
+
+      let string = number.toString();
+      if (firstId.id === string) {
+        firstId.classList.add("selected");
+        thirdId.classList.remove("selected");
+        secondId.classList.remove("selected");
+      } else if (secondId.id === string) {
+        secondId.classList.add("selected");
+        thirdId.classList.remove("selected");
+        firstId.classList.remove("selected");
+      } else {
+        thirdId.classList.add("selected");
+        firstId.classList.remove("selected");
+        secondId.classList.remove("selected");
+      }
     });
     // ==========next btn==========
     nextBtn.addEventListener("click", function () {
@@ -120,6 +155,20 @@ alt=""
       item = natures[number];
       mainImg.src = item.img;
       imageName.textContent = item.title;
+      let string = number.toString();
+      if (firstId.id === string) {
+        firstId.classList.add("selected");
+        thirdId.classList.remove("selected");
+        secondId.classList.remove("selected");
+      } else if (secondId.id === string) {
+        secondId.classList.add("selected");
+        thirdId.classList.remove("selected");
+        firstId.classList.remove("selected");
+      } else {
+        thirdId.classList.add("selected");
+        firstId.classList.remove("selected");
+        secondId.classList.remove("selected");
+      }
     });
   });
 });
@@ -142,13 +191,22 @@ city.forEach(function (img) {
 src=${cities[i].img}
 title=${cities[i].title}
 data-id= ${i}
+id = ${i}
 class="modal-img"
 alt=""
 />`;
     }
 
     imgContainer.innerHTML = listItems;
-
+    // activate selected class when we click on an img
+    let randomId = document.getElementById(elementId);
+    randomId.classList.add("selected");
+    // =====giving each id a variable=========
+    const firstId = document.getElementById("0");
+    const secondId = document.getElementById("1");
+    const thirdId = document.getElementById("2");
+    const fourthId = document.getElementById("3");
+    const fifthId = document.getElementById("4");
     //  ========= modal images click function=====
     const modalImg = document.querySelectorAll(".modal-img");
 
@@ -160,6 +218,37 @@ alt=""
         number = currentNumber;
         mainImg.src = cities[number].img;
         imageName.textContent = cities[number].title;
+        if (firstId.id === currentImage) {
+          firstId.classList.add("selected");
+          secondId.classList.remove("selected");
+          thirdId.classList.remove("selected");
+          fourthId.classList.remove("selected");
+          fifthId.classList.remove("selected");
+        } else if (secondId.id === currentImage) {
+          secondId.classList.add("selected");
+          thirdId.classList.remove("selected");
+          firstId.classList.remove("selected");
+          fourthId.classList.remove("selected");
+          fifthId.classList.remove("selected");
+        } else if (thirdId.id === currentImage) {
+          thirdId.classList.add("selected");
+          firstId.classList.remove("selected");
+          secondId.classList.remove("selected");
+          fourthId.classList.remove("selected");
+          fifthId.classList.remove("selected");
+        } else if (fourthId.id === currentImage) {
+          thirdId.classList.remove("selected");
+          firstId.classList.remove("selected");
+          secondId.classList.remove("selected");
+          fourthId.classList.add("selected");
+          fifthId.classList.remove("selected");
+        } else {
+          thirdId.classList.remove("selected");
+          firstId.classList.remove("selected");
+          secondId.classList.remove("selected");
+          fourthId.classList.remove("selected");
+          fifthId.classList.add("selected");
+        }
       });
     });
 
@@ -181,10 +270,44 @@ alt=""
       } else if (number > cities.length - 1) {
         number = 0;
       }
-      console.log(number);
+
       item = cities[number];
       mainImg.src = item.img;
       imageName.textContent = item.title;
+
+      // if statement so we activate the selected class
+      let string = number.toString();
+      if (firstId.id === string) {
+        firstId.classList.add("selected");
+        secondId.classList.remove("selected");
+        thirdId.classList.remove("selected");
+        fourthId.classList.remove("selected");
+        fifthId.classList.remove("selected");
+      } else if (secondId.id === string) {
+        secondId.classList.add("selected");
+        thirdId.classList.remove("selected");
+        firstId.classList.remove("selected");
+        fourthId.classList.remove("selected");
+        fifthId.classList.remove("selected");
+      } else if (thirdId.id === string) {
+        thirdId.classList.add("selected");
+        firstId.classList.remove("selected");
+        secondId.classList.remove("selected");
+        fourthId.classList.remove("selected");
+        fifthId.classList.remove("selected");
+      } else if (fourthId.id === string) {
+        thirdId.classList.remove("selected");
+        firstId.classList.remove("selected");
+        secondId.classList.remove("selected");
+        fourthId.classList.add("selected");
+        fifthId.classList.remove("selected");
+      } else {
+        thirdId.classList.remove("selected");
+        firstId.classList.remove("selected");
+        secondId.classList.remove("selected");
+        fourthId.classList.remove("selected");
+        fifthId.classList.add("selected");
+      }
     });
 
     // =========NEXT BTN
@@ -198,6 +321,40 @@ alt=""
       item = cities[number];
       mainImg.src = item.img;
       imageName.textContent = item.title;
+
+      // ======if statement for selected class========
+      let string = number.toString();
+      if (firstId.id === string) {
+        firstId.classList.add("selected");
+        secondId.classList.remove("selected");
+        thirdId.classList.remove("selected");
+        fourthId.classList.remove("selected");
+        fifthId.classList.remove("selected");
+      } else if (secondId.id === string) {
+        secondId.classList.add("selected");
+        thirdId.classList.remove("selected");
+        firstId.classList.remove("selected");
+        fourthId.classList.remove("selected");
+        fifthId.classList.remove("selected");
+      } else if (thirdId.id === string) {
+        thirdId.classList.add("selected");
+        firstId.classList.remove("selected");
+        secondId.classList.remove("selected");
+        fourthId.classList.remove("selected");
+        fifthId.classList.remove("selected");
+      } else if (fourthId.id === string) {
+        thirdId.classList.remove("selected");
+        firstId.classList.remove("selected");
+        secondId.classList.remove("selected");
+        fourthId.classList.add("selected");
+        fifthId.classList.remove("selected");
+      } else {
+        thirdId.classList.remove("selected");
+        firstId.classList.remove("selected");
+        secondId.classList.remove("selected");
+        fourthId.classList.remove("selected");
+        fifthId.classList.add("selected");
+      }
     });
   });
 });
